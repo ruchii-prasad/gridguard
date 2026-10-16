@@ -103,7 +103,16 @@ class Ledger:
             f.write(canonical_json(record) + "\n")
         return record
 
-    def verify(self, trusted_head: str | None = None) -> VerifyResult:
+    def ledger_id(self) -> str:
+        """Identifier of this ledger: the record_hash of its first (genesis) record."""
+        recs = self.records()
+        return recs[0]["record_hash"] if recs else GENESIS
+
+    def verify(self, trusted_head: str | None = None, trusted_n: int | None = None) -> VerifyResult:
+        """Check every hash and link. With trusted_head (from an anchor):
+        - trusted_n given: record trusted_n-1 must have that hash (records appended AFTER the
+          anchor are allowed); fewer than trusted_n records means truncation.
+        - trusted_n omitted: the current head must equal trusted_head exactly."""
         try:
             recs = self.records()
         except json.JSONDecodeError as e:
@@ -117,10 +126,20 @@ class Ledger:
             if record_hash(r) != r.get("record_hash"):
                 return VerifyResult(False, len(recs), "", i, "record contents do not match record_hash")
             prev = r["record_hash"]
-        if trusted_head is not None and prev != trusted_head:
-            return VerifyResult(False, len(recs), prev, None,
-                                "chain is internally consistent but its head differs from the "
-                                "trusted (anchored) head: rewritten or truncated")
+        if trusted_head is not None:
+            if trusted_n is not None:
+                if len(recs) < trusted_n:
+                    return VerifyResult(False, len(recs), prev, None,
+                                        f"ledger has {len(recs)} records but {trusted_n} were anchored: "
+                                        "truncated")
+                if recs[trusted_n - 1]["record_hash"] != trusted_head:
+                    return VerifyResult(False, len(recs), prev, trusted_n - 1,
+                                        "record at the anchored position does not match the anchored "
+                                        "hash: rewritten")
+            elif prev != trusted_head:
+                return VerifyResult(False, len(recs), prev, None,
+                                    "chain is internally consistent but its head differs from the "
+                                    "trusted (anchored) head: rewritten or truncated")
         return VerifyResult(True, len(recs), prev)
 
     def export_json(self, out_path: str | Path) -> Path:

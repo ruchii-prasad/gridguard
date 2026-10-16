@@ -3,4 +3,7 @@ __pycache__/
 .pytest_cache/
 results/ledger*
 results/tamper*
+results/attack_copy*
+contracts/node_modules/
+.env
 .DS_Store

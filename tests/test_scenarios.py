@@ -25,7 +25,7 @@ def test_scenarios_deterministic():
 
 
 def test_forecast_matches_actual_before_disturbance():
-    for n in SCENARIO_NAMES[1:]:
+    for n in ("solar_shock", "grid_outage", "demand_spike"):
         s = make_scenario(n, SIM)
         t = s.t_disturbance
         assert np.array_equal(s.forecast.solar_avail_kw[:t], s.actual.solar_avail_kw[:t])
@@ -84,3 +84,18 @@ def test_solar_following_baseline_delivers_flex_and_is_valid():
     d = run_baseline(inp, BAT, GRID, SIM, "solar_following")
     assert d.flex_served.sum() * SIM.dt_h == pytest.approx(inp.flex_energy(SIM.dt_h))
     assert validate_dispatch(d, inp, BAT, GRID, SIM, require_terminal=False).all_passed
+
+
+def test_monsoon_carbon_price_reduces_emissions_without_cost_at_low_price():
+    """Flat tariff + little sun: the carbon price is what moves grid use to cleaner hours."""
+    from dataclasses import replace
+    from src.config import OptimizerParams
+    from src.metrics import compute_metrics
+    spec = make_scenario("monsoon_flat_tariff", SIM)
+    m = {p: compute_metrics(optimize(spec.actual, BAT, GRID, SIM,
+                                     replace(OptimizerParams(), carbon_price_per_kg=p)).dispatch,
+                            spec.actual, BAT, SIM) for p in (0.0, 2.0, 20.0)}
+    assert m[2.0]["emissions_storage_adjusted_kg"] < m[0.0]["emissions_storage_adjusted_kg"] - 5
+    assert m[2.0]["cost_storage_adjusted"] == pytest.approx(m[0.0]["cost_storage_adjusted"], abs=1.0)
+    assert m[20.0]["emissions_storage_adjusted_kg"] < m[2.0]["emissions_storage_adjusted_kg"]
+    assert m[20.0]["cost_storage_adjusted"] > m[2.0]["cost_storage_adjusted"]

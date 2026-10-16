@@ -1,40 +1,88 @@
 {
   "note": "Synthetic inputs; simulated results.",
-  "rows": [
-    {
-      "carbon_price_per_kg": 0.0,
-      "cost_storage_adjusted": 3374.9416028376468,
-      "emissions_storage_adjusted_kg": 392.80222505745303,
-      "grid_import_kwh": 482.5794036434816,
-      "avg_import_carbon_kg_per_kwh": 0.813963924054343
+  "carbon_prices": [
+    0.0,
+    2.0,
+    5.0,
+    10.0,
+    20.0
+  ],
+  "days": {
+    "normal": {
+      "baseline_solar_flex": {
+        "cost_storage_adjusted": 3559.234911867585,
+        "emissions_storage_adjusted_kg": 394.4009381178917
+      },
+      "optimizer": [
+        {
+          "carbon_price_per_kg": 0.0,
+          "cost_storage_adjusted": 3374.9416028376463,
+          "emissions_storage_adjusted_kg": 392.80222505745303,
+          "grid_import_kwh": 482.57940364348167
+        },
+        {
+          "carbon_price_per_kg": 2.0,
+          "cost_storage_adjusted": 3374.9414689697996,
+          "emissions_storage_adjusted_kg": 392.802230341382,
+          "grid_import_kwh": 482.5794163618539
+        },
+        {
+          "carbon_price_per_kg": 5.0,
+          "cost_storage_adjusted": 3374.941465058384,
+          "emissions_storage_adjusted_kg": 392.80222971555565,
+          "grid_import_kwh": 482.5794155795709
+        },
+        {
+          "carbon_price_per_kg": 10.0,
+          "cost_storage_adjusted": 3374.9414603726473,
+          "emissions_storage_adjusted_kg": 392.8022289658377,
+          "grid_import_kwh": 482.57941464242344
+        },
+        {
+          "carbon_price_per_kg": 20.0,
+          "cost_storage_adjusted": 3374.9416168607295,
+          "emissions_storage_adjusted_kg": 392.8022250239478,
+          "grid_import_kwh": 482.5794030802477
+        }
+      ]
     },
-    {
-      "carbon_price_per_kg": 2.0,
-      "cost_storage_adjusted": 3374.941468969761,
-      "emissions_storage_adjusted_kg": 392.8022303413798,
-      "grid_import_kwh": 482.5794163618601,
-      "avg_import_carbon_kg_per_kwh": 0.8139639135516836
-    },
-    {
-      "carbon_price_per_kg": 5.0,
-      "cost_storage_adjusted": 3374.9414650583785,
-      "emissions_storage_adjusted_kg": 392.80222971555474,
-      "grid_import_kwh": 482.5794155795696,
-      "avg_import_carbon_kg_per_kwh": 0.8139639135743201
-    },
-    {
-      "carbon_price_per_kg": 10.0,
-      "cost_storage_adjusted": 3374.941460372647,
-      "emissions_storage_adjusted_kg": 392.8022289658377,
-      "grid_import_kwh": 482.57941464242344,
-      "avg_import_carbon_kg_per_kwh": 0.8139639136014372
-    },
-    {
-      "carbon_price_per_kg": 20.0,
-      "cost_storage_adjusted": 3374.941616860727,
-      "emissions_storage_adjusted_kg": 392.80222502394747,
-      "grid_import_kwh": 482.5794030802476,
-      "avg_import_carbon_kg_per_kwh": 0.8139639249349172
+    "monsoon_flat_tariff": {
+      "baseline_solar_flex": {
+        "cost_storage_adjusted": 8233.469626203187,
+        "emissions_storage_adjusted_kg": 849.7460917190892
+      },
+      "optimizer": [
+        {
+          "carbon_price_per_kg": 0.0,
+          "cost_storage_adjusted": 8200.627565994211,
+          "emissions_storage_adjusted_kg": 824.4671491376752,
+          "grid_import_kwh": 1025.0784457492764
+        },
+        {
+          "carbon_price_per_kg": 2.0,
+          "cost_storage_adjusted": 8200.627564991692,
+          "emissions_storage_adjusted_kg": 815.2671454632551,
+          "grid_import_kwh": 1025.0784456239614
+        },
+        {
+          "carbon_price_per_kg": 5.0,
+          "cost_storage_adjusted": 8200.627635688135,
+          "emissions_storage_adjusted_kg": 815.2671134128132,
+          "grid_import_kwh": 1025.078454461017
+        },
+        {
+          "carbon_price_per_kg": 10.0,
+          "cost_storage_adjusted": 8274.522257782133,
+          "emissions_storage_adjusted_kg": 795.343996455927,
+          "grid_import_kwh": 1034.3152822227667
+        },
+        {
+          "carbon_price_per_kg": 20.0,
+          "cost_storage_adjusted": 8307.364298697452,
+          "emissions_storage_adjusted_kg": 789.149261751231,
+          "grid_import_kwh": 1038.4205373371815
+        }
+      ]
     }
-  ]
+  }
 }

@@ -26,7 +26,7 @@ from .microgrid import FIELDS, Dispatch, battery_trajectory
 from .optimizer import evaluate_objective, optimize
 from .validation import ValidationReport, validate_dispatch
 
-SCENARIO_NAMES = ("normal", "solar_shock", "grid_outage", "demand_spike")
+SCENARIO_NAMES = ("normal", "solar_shock", "grid_outage", "demand_spike", "monsoon_flat_tariff")
 CONTROLLERS = ("baseline", "baseline_solar_flex", "reoptimized", "oracle")
 
 
@@ -70,6 +70,19 @@ def make_scenario(name: str, sim: SimParams = SimParams()) -> ScenarioSpec:
     actual = _copy(forecast, name)
     if name == "normal":
         return ScenarioSpec(name, "Normal operation: forecast = actual.", forecast, actual, None)
+    if name == "monsoon_flat_tariff":
+        # A different DAY, not a disturbance: forecast = actual. Little sun leaves the battery room
+        # to shift grid energy, and a flat tariff gives a cost-only controller no reason to avoid
+        # dirty hours, so the carbon price is what drives the timing. Carbon shape is illustrative.
+        h = np.arange(sim.n_steps) * sim.dt_h
+        day = _copy(forecast, name)
+        day.solar_avail_kw *= 0.3
+        day.price_per_kwh[:] = 8.0
+        day.carbon_kg_per_kwh[:] = np.where((h >= 9) & (h < 16), 0.62,
+                                            np.where((h >= 18) & (h < 23), 0.92, 0.85))
+        return ScenarioSpec(name, "Monsoon day: 30% of normal solar, flat ₹8/kWh tariff, grid "
+                            "cleaner at midday (illustrative carbon shape). Forecast = actual.",
+                            day, _copy(day, name), None)
     if name == "solar_shock":
         s = steps(12, 15)
         actual.solar_avail_kw[s] *= 0.2

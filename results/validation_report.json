@@ -40,7 +40,7 @@
         "energy_closure_error_kwh": 0.0,
         "battery_identity_error_kwh": 0.0,
         "battery_losses_kwh": 17.447374534854827,
-        "solve_time_s": 5.103965373999927,
+        "solve_time_s": 5.019193932999997,
         "rerun_max_dispatch_diff_kw": 0.0
       },
       "oracle": {
@@ -52,7 +52,7 @@
         "energy_closure_error_kwh": 0.0,
         "battery_identity_error_kwh": 0.0,
         "battery_losses_kwh": 17.447374534854827,
-        "solve_time_s": 5.103965373999927,
+        "solve_time_s": 5.019193932999997,
         "rerun_max_dispatch_diff_kw": 0.0
       }
     },
@@ -90,7 +90,7 @@
         "energy_closure_error_kwh": 0.0,
         "battery_identity_error_kwh": 4.263256414560601e-14,
         "battery_losses_kwh": 17.447367877977104,
-        "solve_time_s": 6.344979089999924,
+        "solve_time_s": 5.236654741000052,
         "rerun_max_dispatch_diff_kw": 0.0
       },
       "oracle": {
@@ -102,7 +102,7 @@
         "energy_closure_error_kwh": 0.0,
         "battery_identity_error_kwh": 5.684341886080802e-14,
         "battery_losses_kwh": 18.22873998602014,
-        "solve_time_s": 0.6060397379997084,
+        "solve_time_s": 0.6311910240000316,
         "rerun_max_dispatch_diff_kw": 0.0
       }
     },
@@ -140,7 +140,7 @@
         "energy_closure_error_kwh": 0.0,
         "battery_identity_error_kwh": 4.263256414560601e-14,
         "battery_losses_kwh": 20.310255421281422,
-        "solve_time_s": 5.7209313479997945,
+        "solve_time_s": 5.0562702050000325,
         "rerun_max_dispatch_diff_kw": 0.0
       },
       "oracle": {
@@ -152,7 +152,7 @@
         "energy_closure_error_kwh": 0.0,
         "battery_identity_error_kwh": 2.842170943040401e-14,
         "battery_losses_kwh": 20.31025542066631,
-        "solve_time_s": 2.2824262459998863,
+        "solve_time_s": 1.9864642520000189,
         "rerun_max_dispatch_diff_kw": 0.0
       }
     },
@@ -190,7 +190,7 @@
         "energy_closure_error_kwh": 0.0,
         "battery_identity_error_kwh": 4.263256414560601e-14,
         "battery_losses_kwh": 17.44736787797485,
-        "solve_time_s": 5.205459766000331,
+        "solve_time_s": 4.9568193499999325,
         "rerun_max_dispatch_diff_kw": 0.0
       },
       "oracle": {
@@ -202,7 +202,57 @@
         "energy_closure_error_kwh": 0.0,
         "battery_identity_error_kwh": 2.842170943040401e-14,
         "battery_losses_kwh": 17.447374534866263,
-        "solve_time_s": 2.00728249399981,
+        "solve_time_s": 2.0403187790000175,
+        "rerun_max_dispatch_diff_kw": 0.0
+      }
+    },
+    "monsoon_flat_tariff": {
+      "baseline": {
+        "physical_checks_passed": "13/13",
+        "worst_physical_violation": 0.0,
+        "terminal_target_met": false,
+        "energy_in_kwh": 1300.0,
+        "energy_out_kwh": 1300.0,
+        "energy_closure_error_kwh": 0.0,
+        "battery_identity_error_kwh": 0.0,
+        "battery_losses_kwh": 1.9999999999999976,
+        "solve_time_s": 0.0,
+        "rerun_max_dispatch_diff_kw": 0.0
+      },
+      "baseline_solar_flex": {
+        "physical_checks_passed": "13/13",
+        "worst_physical_violation": 0.0,
+        "terminal_target_met": false,
+        "energy_in_kwh": 1300.0,
+        "energy_out_kwh": 1300.0,
+        "energy_closure_error_kwh": 0.0,
+        "battery_identity_error_kwh": 0.0,
+        "battery_losses_kwh": 1.9999999999999976,
+        "solve_time_s": 0.0,
+        "rerun_max_dispatch_diff_kw": 0.0
+      },
+      "reoptimized": {
+        "physical_checks_passed": "13/13",
+        "worst_physical_violation": 0.0,
+        "terminal_target_met": true,
+        "energy_in_kwh": 1300.0000564764912,
+        "energy_out_kwh": 1300.0000564764912,
+        "energy_closure_error_kwh": 0.0,
+        "battery_identity_error_kwh": 6.776263578034403e-21,
+        "battery_losses_kwh": 5.50645789071158e-06,
+        "solve_time_s": 0.22033861700003854,
+        "rerun_max_dispatch_diff_kw": 0.0
+      },
+      "oracle": {
+        "physical_checks_passed": "13/13",
+        "worst_physical_violation": 0.0,
+        "terminal_target_met": true,
+        "energy_in_kwh": 1300.0000564764912,
+        "energy_out_kwh": 1300.0000564764912,
+        "energy_closure_error_kwh": 0.0,
+        "battery_identity_error_kwh": 6.776263578034403e-21,
+        "battery_losses_kwh": 5.50645789071158e-06,
+        "solve_time_s": 0.22033861700003854,
         "rerun_max_dispatch_diff_kw": 0.0
       }
     }

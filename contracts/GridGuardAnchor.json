@@ -1,0 +1,221 @@
+{
+  "contractName": "GridGuardAnchor",
+  "compiler": "0.8.28+commit.7893614a.Emscripten.clang",
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "evmVersion": "paris",
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode.object"
+        ]
+      }
+    }
+  },
+  "sourceSha256": "78dfc8c33f0b7ad0d37531e6d6e8f9c51f15748ac26f75a22d6b0e1de87eb92e",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "publisher",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "ledgerId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "headHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint64",
+          "name": "nRecords",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "runId",
+          "type": "string"
+        }
+      ],
+      "name": "Anchored",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "ledgerId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "headHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint64",
+          "name": "nRecords",
+          "type": "uint64"
+        },
+        {
+          "internalType": "string",
+          "name": "runId",
+          "type": "string"
+        }
+      ],
+      "name": "anchor",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "publisher",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "ledgerId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "count",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "publisher",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "ledgerId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "name": "get",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "bytes32",
+              "name": "headHash",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "uint64",
+              "name": "nRecords",
+              "type": "uint64"
+            },
+            {
+              "internalType": "uint64",
+              "name": "timestamp",
+              "type": "uint64"
+            },
+            {
+              "internalType": "uint64",
+              "name": "blockNumber",
+              "type": "uint64"
+            }
+          ],
+          "internalType": "struct GridGuardAnchor.Anchor",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "publisher",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "ledgerId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "latest",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "bytes32",
+              "name": "headHash",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "uint64",
+              "name": "nRecords",
+              "type": "uint64"
+            },
+            {
+              "internalType": "uint64",
+              "name": "timestamp",
+              "type": "uint64"
+            },
+            {
+              "internalType": "uint64",
+              "name": "blockNumber",
+              "type": "uint64"
+            }
+          ],
+          "internalType": "struct GridGuardAnchor.Anchor",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x6080604052348015600f57600080fd5b506106ed8061001f6000396000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c806348cf08161461005157806368205bc3146100775780639ca8cf1f146100e0578063d185dd4e146100f3575b600080fd5b61006461005f366004610514565b610127565b6040519081526020015b60405180910390f35b61008a6100853660046105d5565b610368565b60405161006e919060006080820190508251825267ffffffffffffffff602084015116602083015267ffffffffffffffff604084015116604083015267ffffffffffffffff606084015116606083015292915050565b61008a6100ee3660046105ff565b610463565b6100646101013660046105d5565b6001600160a01b0391909116600090815260208181526040808320938352929052205490565b6000851580159061013757508415155b6101755760405162461bcd60e51b815260206004820152600a6024820152690cadae0e8f240d0c2e6d60b31b60448201526064015b60405180910390fd5b60008467ffffffffffffffff16116101be5760405162461bcd60e51b815260206004820152600c60248201526b32b6b83a3c903632b233b2b960a11b604482015260640161016c565b33600090815260208181526040808320898452909152902080541561026557805481906101ed90600190610632565b815481106101fd576101fd610653565b600091825260209091206001600290920201015467ffffffffffffffff90811690861610156102655760405162461bcd60e51b81526020600482015260146024820152736c65646765722063616e6e6f7420736872696e6b60601b604482015260640161016c565b6040805160808101825287815267ffffffffffffffff8088166020808401918252428316948401948552438316606085019081528654600181810189556000898152939093209551600290910290950194855591519381018054955192518416600160801b0267ffffffffffffffff60801b19938516600160401b026fffffffffffffffffffffffffffffffff199097169590941694909417949094171617905581546103129190610632565b915086336001600160a01b03167f6ac0c32fd3915a90eeb1daff486f51227dd989bb1d7ecf2752c6e7116ac304198489898989604051610356959493929190610669565b60405180910390a35095945050505050565b6040805160808101825260008082526020808301829052828401829052606083018290526001600160a01b038616825281815283822085835290529190912080546103e25760405162461bcd60e51b815260206004820152600a6024820152696e6f20616e63686f727360b01b604482015260640161016c565b805481906103f290600190610632565b8154811061040257610402610653565b6000918252602091829020604080516080810182526002909302909101805483526001015467ffffffffffffffff80821694840194909452600160401b8104841691830191909152600160801b900490911660608201529150505b92915050565b6040805160808101825260008082526020808301829052828401829052606083018290526001600160a01b03871682528181528382208683529052919091208054839081106104b4576104b4610653565b6000918252602091829020604080516080810182526002909302909101805483526001015467ffffffffffffffff80821694840194909452600160401b8104841691830191909152600160801b9004909116606082015290509392505050565b60008060008060006080868803121561052c57600080fd5b8535945060208601359350604086013567ffffffffffffffff8116811461055257600080fd5b9250606086013567ffffffffffffffff81111561056e57600080fd5b8601601f8101881361057f57600080fd5b803567ffffffffffffffff81111561059657600080fd5b8860208284010111156105a857600080fd5b959894975092955050506020019190565b80356001600160a01b03811681146105d057600080fd5b919050565b600080604083850312156105e857600080fd5b6105f1836105b9565b946020939093013593505050565b60008060006060848603121561061457600080fd5b61061d846105b9565b95602085013595506040909401359392505050565b8181038181111561045d57634e487b7160e01b600052601160045260246000fd5b634e487b7160e01b600052603260045260246000fd5b85815284602082015267ffffffffffffffff8416604082015260806060820152816080820152818360a0830137600081830160a090810191909152601f909201601f1916010194935050505056fea26469706673582212207b781c3baf9ad5e7b582614b06697667a503041591bd4a68390c737986eb509b64736f6c634300081c0033"
+}

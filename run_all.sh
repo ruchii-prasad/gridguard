@@ -9,7 +9,7 @@ if [ ! -x .venv/bin/python ]; then
   python3 -m venv .venv
 fi
 echo ">> Installing/checking dependencies"
-.venv/bin/pip install -q -r requirements.txt
+.venv/bin/pip install -q -r requirements-dev.txt
 
 echo ">> Tests";              .venv/bin/python -m pytest -q
 echo; echo ">> Scenarios";    .venv/bin/python run_demo.py

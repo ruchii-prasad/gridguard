@@ -23,6 +23,9 @@ from src.scenarios import CONTROLLERS, SCENARIO_NAMES, make_scenario, outage_sce
 RESULTS = Path(__file__).parent / "results"
 LEDGER_PATH = RESULTS / "ledger.jsonl"
 ANCHOR_PATH = RESULTS / "ledger_anchor.json"
+CHAIN_DEPLOYMENT = Path(__file__).parent / "contracts" / "deployment.json"
+CHAIN_SNAPSHOT = RESULTS / "anchored_ledger.jsonl"
+CHAIN_RECEIPT = RESULTS / "chain_anchor_receipt.json"
 
 LABEL = {"baseline": "Baseline (rule, nominal flex)", "baseline_solar_flex": "Baseline + solar-following flex",
          "reoptimized": "GridGuard (re-optimized)", "oracle": "Oracle (perfect foresight)"}
@@ -33,7 +36,8 @@ DASH = {"baseline": "solid", "baseline_solar_flex": "solid", "reoptimized": "sol
 SUPPLY = {"pv_used": ("Solar used", "#2a78d6"), "discharge": ("Battery discharge", "#eb6834"),
           "grid_import": ("Grid import", "#1baf7a")}
 SCENARIO_LABEL = {"normal": "Normal operation", "solar_shock": "Solar shock",
-                  "grid_outage": "Grid outage", "demand_spike": "Demand spike"}
+                  "grid_outage": "Grid outage", "demand_spike": "Demand spike",
+                  "monsoon_flat_tariff": "Monsoon day, flat tariff"}
 
 SIM, BAT, GRID, OPT = SimParams(), BatteryParams(), GridParams(), OptimizerParams()
 HOURS = np.arange(SIM.n_steps) * SIM.dt_h
@@ -93,8 +97,8 @@ st.warning("**SIMULATION.** Inputs are synthetic profiles; every figure is a sim
 st.title(f"{SCENARIO_LABEL[scenario]}")
 st.caption(spec.description)
 
-tab_overview, tab_dispatch, tab_checks, tab_ledger, tab_sweep = st.tabs(
-    ["Overview", "Dispatch", "Constraint checks", "Audit ledger", "Outage sweep"])
+tab_overview, tab_dispatch, tab_checks, tab_ledger, tab_sweep, tab_carbon = st.tabs(
+    ["Overview", "Dispatch", "Constraint checks", "Audit ledger", "Outage sweep", "Carbon trade-off"])
 
 # ---------------------------------------------------------------- overview
 with tab_overview:
@@ -278,6 +282,64 @@ with tab_ledger:
     else:
         st.info("Ledger is empty. Click **Append this scenario** or run `run_demo.py`.")
 
+    # ---------------- public blockchain anchor (Ethereum Sepolia testnet)
+    st.divider()
+    st.subheader("Public blockchain anchor (Ethereum Sepolia testnet)")
+    st.markdown("The head hash of an audit-ledger snapshot is published to the `GridGuardAnchor` smart "
+                "contract. Anyone can re-check the snapshot against the chain **without a wallet**. "
+                "This catches what a local check cannot: a ledger rewritten with every hash "
+                "recomputed, or truncated. Records themselves stay off-chain; only 32-byte hashes "
+                "are public.")
+    if CHAIN_DEPLOYMENT.exists() and CHAIN_RECEIPT.exists() and CHAIN_SNAPSHOT.exists():
+        dep = json.loads(CHAIN_DEPLOYMENT.read_text())
+        rec = json.loads(CHAIN_RECEIPT.read_text())
+        snap = Ledger(CHAIN_SNAPSHOT)
+        st.markdown(f"Contract [`{dep['address']}`](https://sepolia.etherscan.io/address/{dep['address']}) · "
+                    f"anchor transaction [`{rec['tx'][:18]}…`]({rec['explorer_tx']}) · "
+                    f"{rec['n_records']} records · publisher `{rec['publisher']}`")
+        b1, b2 = st.columns(2)
+        if b1.button("Verify snapshot against Sepolia", width="stretch"):
+            try:
+                from src.chain import ChainAnchor, connect, verify_against_chain
+                with st.spinner("Reading the contract from a public Sepolia node..."):
+                    res, onchain = verify_against_chain(
+                        snap, ChainAnchor(connect(), dep["address"], rec["publisher"], snap.ledger_id()))
+                if res.ok:
+                    st.success(f"VALID: all {res.n_records} records hash-chain correctly and record "
+                               f"{onchain['n_records'] - 1} matches the on-chain head "
+                               f"{onchain['head_hash'][:16]}… (block {onchain['block']}).", icon="✅")
+                else:
+                    st.error(f"FAILED: {res.reason}", icon="❌")
+            except Exception as e:  # network or RPC problems must not crash the demo
+                st.warning(f"Could not reach a Sepolia node right now ({type(e).__name__}). "
+                           f"The anchor can still be checked on Etherscan: {rec['explorer_tx']}")
+        if b2.button("Attack test: rewrite and re-hash a copy", width="stretch"):
+            try:
+                from src.chain import ChainAnchor, connect, verify_against_chain
+                recs2 = snap.records()
+                k = len(recs2) // 2
+                recs2[k]["metrics"]["emissions_storage_adjusted_kg"] *= 0.8
+                for j in range(k, len(recs2)):
+                    if j > k:
+                        recs2[j]["prev_hash"] = recs2[j - 1]["record_hash"]
+                    recs2[j]["record_hash"] = record_hash(recs2[j])
+                copy = RESULTS / "attack_copy.jsonl"
+                copy.write_text("".join(canonical_json(x) + "\n" for x in recs2))
+                attacked = Ledger(copy)
+                local = attacked.verify()
+                with st.spinner("Checking the forged copy against Sepolia..."):
+                    res, _ = verify_against_chain(
+                        attacked, ChainAnchor(connect(), dep["address"], rec["publisher"], snap.ledger_id()))
+                copy.unlink()
+                st.info(f"Forged copy: record {k}'s emissions cut by 20% and every later hash recomputed.\n\n"
+                        f"- Local hash-chain check: **{'VALID (fooled)' if local.ok else 'FAILED'}**\n"
+                        f"- Check against Sepolia anchor: **{'VALID' if res.ok else 'FAILED: ' + res.reason}**")
+            except Exception as e:
+                st.warning(f"Could not reach a Sepolia node right now ({type(e).__name__}).")
+    else:
+        st.info("No on-chain anchor published yet. Run `run_chain_anchor.py deploy` and "
+                "`run_chain_anchor.py anchor` (see README).")
+
 # ---------------------------------------------------------------- sweep
 with tab_sweep:
     st.markdown("**Critical energy unserved for an unannounced 3 h outage starting at each even hour "
@@ -294,3 +356,51 @@ with tab_sweep:
         st.plotly_chart(base_layout(fig, "kWh unserved", 380).update_xaxes(range=None, dtick=None,
                         title="Outage start"), width="stretch")
         st.dataframe(df, width="stretch", hide_index=True)
+
+# ---------------------------------------------------------------- carbon
+with tab_carbon:
+    st.markdown("**How much CO₂ does each extra rupee buy?** The optimizer's objective adds an assumed "
+                "shadow carbon price (₹/kg CO₂e) to the electricity cost. Each point is the optimal "
+                "dispatch at one carbon price (simulated, storage-adjusted).")
+    sweep_path = RESULTS / "carbon_sweep.json"
+    if sweep_path.exists():
+        data = json.loads(sweep_path.read_text())
+        names = {"normal": "Sunny day, time-of-day tariff", "monsoon_flat_tariff": "Monsoon day, flat tariff"}
+        for day, color in (("normal", "#2a78d6"), ("monsoon_flat_tariff", "#eb6834")):
+            if day not in data.get("days", {}):
+                continue
+            d = data["days"][day]
+            # Merge carbon prices that give the same dispatch into one labelled point.
+            pts: list[list] = []
+            for r in d["optimizer"]:
+                key = (round(r["cost_storage_adjusted"], 1), round(r["emissions_storage_adjusted_kg"], 1))
+                if pts and pts[-1][0] == key:
+                    pts[-1][1].append(r["carbon_price_per_kg"])
+                else:
+                    pts.append([key, [r["carbon_price_per_kg"]]])
+            label = lambda ps: (f"₹{ps[0]:g}/kg" if len(ps) == 1
+                                else f"₹{ps[0]:g}–{ps[-1]:g}/kg (same plan)")
+            fig = go.Figure()
+            fig.add_scatter(x=[k[0] for k, _ in pts], y=[k[1] for k, _ in pts],
+                            mode="lines+markers+text", name="GridGuard at carbon price",
+                            text=[label(ps) for _, ps in pts],
+                            textposition="top right", line=dict(color=color, width=2),
+                            marker=dict(size=9))
+            b = d["baseline_solar_flex"]
+            fig.add_scatter(x=[b["cost_storage_adjusted"]], y=[b["emissions_storage_adjusted_kg"]],
+                            mode="markers+text", name="Baseline + solar-following flex",
+                            text=["baseline"], textposition="bottom left",
+                            marker=dict(size=11, symbol="diamond", color="#8a8984"))
+            fig.update_layout(height=340, margin=dict(l=10, r=10, t=30, b=10),
+                              legend=dict(orientation="h", y=1.08, x=0),
+                              xaxis_title="Cost, storage-adjusted (₹)",
+                              yaxis_title="Emissions, storage-adjusted (kg CO₂e)")
+            fig.update_yaxes(gridcolor="rgba(128,128,128,0.2)")
+            st.markdown(f"**{names[day]}**")
+            st.plotly_chart(fig, width="stretch")
+        st.caption("Sunny day: tariff and carbon already point the same way and the battery fills with "
+                   "solar, so the carbon price changes nothing. Monsoon day, flat tariff: little sun "
+                   "leaves room to shift grid energy, and only the carbon price rewards cleaner hours. "
+                   "Carbon intensity shapes are illustrative, not measured grid data.")
+    else:
+        st.info("Run `run_carbon_sweep.py` to generate results/carbon_sweep.json.")
