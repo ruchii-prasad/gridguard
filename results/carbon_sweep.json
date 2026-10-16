@@ -1,0 +1,40 @@
+{
+  "note": "Synthetic inputs; simulated results.",
+  "rows": [
+    {
+      "carbon_price_per_kg": 0.0,
+      "cost_storage_adjusted": 3374.9416028376468,
+      "emissions_storage_adjusted_kg": 392.80222505745303,
+      "grid_import_kwh": 482.5794036434816,
+      "avg_import_carbon_kg_per_kwh": 0.813963924054343
+    },
+    {
+      "carbon_price_per_kg": 2.0,
+      "cost_storage_adjusted": 3374.941468969761,
+      "emissions_storage_adjusted_kg": 392.8022303413798,
+      "grid_import_kwh": 482.5794163618601,
+      "avg_import_carbon_kg_per_kwh": 0.8139639135516836
+    },
+    {
+      "carbon_price_per_kg": 5.0,
+      "cost_storage_adjusted": 3374.9414650583785,
+      "emissions_storage_adjusted_kg": 392.80222971555474,
+      "grid_import_kwh": 482.5794155795696,
+      "avg_import_carbon_kg_per_kwh": 0.8139639135743201
+    },
+    {
+      "carbon_price_per_kg": 10.0,
+      "cost_storage_adjusted": 3374.941460372647,
+      "emissions_storage_adjusted_kg": 392.8022289658377,
+      "grid_import_kwh": 482.57941464242344,
+      "avg_import_carbon_kg_per_kwh": 0.8139639136014372
+    },
+    {
+      "carbon_price_per_kg": 20.0,
+      "cost_storage_adjusted": 3374.941616860727,
+      "emissions_storage_adjusted_kg": 392.80222502394747,
+      "grid_import_kwh": 482.5794030802476,
+      "avg_import_carbon_kg_per_kwh": 0.8139639249349172
+    }
+  ]
+}

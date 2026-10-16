@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+.pytest_cache/
+results/ledger*
+results/tamper*
+.DS_Store

@@ -1,0 +1,115 @@
+{
+  "note": "Synthetic inputs; simulated results.",
+  "rows": [
+    {
+      "start_h": 0,
+      "duration_h": 3.0,
+      "critical_unserved_kwh": {
+        "baseline": 44.00000000000001,
+        "baseline_solar_flex": 44.00000000000001,
+        "reoptimized": 43.99999999999999,
+        "oracle": 43.99999999999999
+      }
+    },
+    {
+      "start_h": 2,
+      "duration_h": 3.0,
+      "critical_unserved_kwh": {
+        "baseline": 82.0,
+        "baseline_solar_flex": 82.0,
+        "reoptimized": 43.99994340813217,
+        "oracle": 0.0
+      }
+    },
+    {
+      "start_h": 4,
+      "duration_h": 3.0,
+      "critical_unserved_kwh": {
+        "baseline": 70.26941069601031,
+        "baseline_solar_flex": 70.26941069601031,
+        "reoptimized": 32.26935410414249,
+        "oracle": 0.0
+      }
+    },
+    {
+      "start_h": 6,
+      "duration_h": 3.0,
+      "critical_unserved_kwh": {
+        "baseline": 0.0,
+        "baseline_solar_flex": 0.0,
+        "reoptimized": 0.0,
+        "oracle": 0.0
+      }
+    },
+    {
+      "start_h": 8,
+      "duration_h": 3.0,
+      "critical_unserved_kwh": {
+        "baseline": 0.0,
+        "baseline_solar_flex": 0.0,
+        "reoptimized": 0.0,
+        "oracle": 0.0
+      }
+    },
+    {
+      "start_h": 10,
+      "duration_h": 3.0,
+      "critical_unserved_kwh": {
+        "baseline": 0.0,
+        "baseline_solar_flex": 0.0,
+        "reoptimized": 0.0,
+        "oracle": 0.0
+      }
+    },
+    {
+      "start_h": 12,
+      "duration_h": 3.0,
+      "critical_unserved_kwh": {
+        "baseline": 0.0,
+        "baseline_solar_flex": 0.0,
+        "reoptimized": 0.0,
+        "oracle": 0.0
+      }
+    },
+    {
+      "start_h": 14,
+      "duration_h": 3.0,
+      "critical_unserved_kwh": {
+        "baseline": 0.0,
+        "baseline_solar_flex": 0.0,
+        "reoptimized": 0.0,
+        "oracle": 0.0
+      }
+    },
+    {
+      "start_h": 16,
+      "duration_h": 3.0,
+      "critical_unserved_kwh": {
+        "baseline": 5.0,
+        "baseline_solar_flex": 5.0,
+        "reoptimized": 5.000000000000009,
+        "oracle": 4.999999999999995
+      }
+    },
+    {
+      "start_h": 18,
+      "duration_h": 3.0,
+      "critical_unserved_kwh": {
+        "baseline": 34.612491706317115,
+        "baseline_solar_flex": 34.612491706317115,
+        "reoptimized": 15.0,
+        "oracle": 14.999999999999986
+      }
+    },
+    {
+      "start_h": 20,
+      "duration_h": 3.0,
+      "critical_unserved_kwh": {
+        "baseline": 112.0,
+        "baseline_solar_flex": 112.0,
+        "reoptimized": 12.000000105602817,
+        "oracle": 9.999999999999986
+      }
+    }
+  ]
+}
