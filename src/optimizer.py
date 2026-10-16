@@ -190,6 +190,7 @@ def optimize(inp: ScenarioInputs, battery: BatteryParams, grid: GridParams,
     res = milp(cost, integrality=integrality, bounds=Bounds(lb, ub),
                constraints=base_cons, options=options)
     _check(res, "stage 1 (minimize J)")
+    final_cost, final_cons = cost, [base_cons]
 
     if opt.tie_break:
         # Stage 2 (lexicographic tie-break): many dispatches reach the same minimum J, and
@@ -206,16 +207,24 @@ def optimize(inp: ScenarioInputs, battery: BatteryParams, grid: GridParams,
                     constraints=[base_cons, j_cap], options=options)
         _check(res2, "stage 2 (tie-break)")
         res = res2
+        final_cost, final_cons = cost2, [base_cons, j_cap]
+
+    # Polish: HiGHS returns binaries within its integrality tolerance (e.g. 0.99999996), which
+    # leaves micro-kW of "allowed" simultaneous charge/discharge. Round the binaries, FIX them,
+    # and re-solve the remaining LP so the continuous dispatch is exactly consistent with them.
+    u_idx = [ix("u", t) for t in range(T)]
+    u_fixed = np.round(res.x[u_idx])
+    lb_p, ub_p = lb.copy(), ub.copy()
+    lb_p[u_idx] = ub_p[u_idx] = u_fixed
+    polish = milp(final_cost, integrality=np.zeros(n), bounds=Bounds(lb_p, ub_p),
+                  constraints=final_cons, options={"time_limit": opt.time_limit_s})
+    _check(polish, "polish LP (binaries fixed)")
     solve_time = time.perf_counter() - t0
 
-    x = res.x
+    x = polish.x
     get = lambda b: np.clip(x[BLOCKS.index(b) * T:(BLOCKS.index(b) + 1) * T], 0.0, None)
     d = Dispatch(pv_used=get("pv"), grid_import=get("g"), charge=get("c"), discharge=get("dch"),
                  crit_served=get("cs"), flex_served=get("fs"))
-    # Remove sub-tolerance solver noise on exclusivity (|value| < 1e-9 by construction of u).
-    u = np.round(get("u"))
-    d.charge = np.where(u > 0.5, d.charge, 0.0)
-    d.discharge = np.where(u > 0.5, 0.0, d.discharge)
 
     return OptimizationResult(
         dispatch=d,

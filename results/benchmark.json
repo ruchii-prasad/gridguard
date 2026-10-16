@@ -37,7 +37,7 @@
     "python": "3.13.16",
     "scipy": "1.18.1"
   },
-  "generated_utc": "2026-10-16T13:12:08+00:00",
+  "generated_utc": "2026-10-16T14:19:29+00:00",
   "note": "Synthetic inputs; simulated results. Not measured real-world impact.",
   "results_fingerprint": "2bc9036c5c59",
   "scenarios": {
@@ -303,29 +303,29 @@
         },
         "oracle": {
           "metrics": {
-            "avg_import_carbon_kg_per_kwh": 0.8271145957001744,
-            "battery_e_final_kwh": 100.0,
+            "avg_import_carbon_kg_per_kwh": 0.8271145957001742,
+            "battery_e_final_kwh": 100.00000000000003,
             "battery_e_init_kwh": 100.0,
-            "battery_e_min_kwh": 59.999999999999986,
-            "battery_throughput_kwh": 340.44748771869706,
-            "cost": 4694.94146896983,
-            "cost_storage_adjusted": 4694.94146896983,
+            "battery_e_min_kwh": 60.0,
+            "battery_throughput_kwh": 340.44748771880074,
+            "cost": 4694.941468969857,
+            "cost_storage_adjusted": 4694.941468969857,
             "critical_served_kwh": 1300.0,
             "critical_unserved_kwh": 0.0,
-            "emissions_kg": 498.40223034138694,
-            "emissions_storage_adjusted_kg": 498.40223034138694,
+            "emissions_kg": 498.4022303413912,
+            "emissions_storage_adjusted_kg": 498.4022303413912,
             "flex_served_kwh": 120.0,
             "flex_unserved_kwh": 0.0,
-            "grid_import_kwh": 602.57941636186,
-            "grid_import_storage_adjusted_kwh": 602.57941636186,
+            "grid_import_kwh": 602.5794163618654,
+            "grid_import_storage_adjusted_kwh": 602.5794163618654,
             "load_served_kwh": 1420.0,
-            "objective_J": 5861.969673511952,
+            "objective_J": 5861.96967351204,
             "peak_grid_import_kw": 115.0,
             "pv_available_kwh": 916.4051996083215,
             "pv_curtailed_kwh": 81.53724143532057,
             "pv_used_kwh": 834.8679581730009
           },
-          "solve_time_s": 1.9306393150000076,
+          "solve_time_s": 2.0881931670000995,
           "validation": {
             "all_passed": true,
             "checks": [
@@ -337,11 +337,11 @@
                 "worst_violation": 0.0
               },
               {
-                "detail": "max |residual| 7.11e-15 kW",
+                "detail": "max |residual| 3.55e-15 kW",
                 "kind": "physical",
                 "name": "power_balance",
                 "passed": true,
-                "worst_violation": 7.105427357601002e-15
+                "worst_violation": 3.552713678800501e-15
               },
               {
                 "detail": "max excess 7.11e-15 kW",
@@ -365,11 +365,11 @@
                 "worst_violation": 0.0
               },
               {
-                "detail": "max excess 2.13e-14 kW",
+                "detail": "max excess 0 kW",
                 "kind": "physical",
                 "name": "discharge_power_limit",
                 "passed": true,
-                "worst_violation": 2.1316282072803006e-14
+                "worst_violation": 0.0
               },
               {
                 "detail": "min(charge, discharge) at each step",
@@ -397,7 +397,7 @@
                 "kind": "physical",
                 "name": "reserve_respected_when_grid_up",
                 "passed": true,
-                "worst_violation": 1.4210854715202004e-14
+                "worst_violation": 0.0
               },
               {
                 "detail": "max excess 0 kW",
@@ -432,29 +432,29 @@
         },
         "reoptimized": {
           "metrics": {
-            "avg_import_carbon_kg_per_kwh": 0.8271146041803841,
-            "battery_e_final_kwh": 100.00000000000895,
+            "avg_import_carbon_kg_per_kwh": 0.827114604180391,
+            "battery_e_final_kwh": 100.00000000000001,
             "battery_e_init_kwh": 100.0,
-            "battery_e_min_kwh": 60.000000000008285,
-            "battery_throughput_kwh": 340.4473578241783,
-            "cost": 4694.941634708948,
-            "cost_storage_adjusted": 4694.941634708878,
+            "battery_e_min_kwh": 60.0,
+            "battery_throughput_kwh": 340.4473578240734,
+            "cost": 4694.941634709042,
+            "cost_storage_adjusted": 4694.941634709042,
             "critical_served_kwh": 1300.0,
             "critical_unserved_kwh": 0.0,
-            "emissions_kg": 498.40222994538834,
-            "emissions_storage_adjusted_kg": 498.4022299453811,
-            "flex_served_kwh": 119.99999999999649,
-            "flex_unserved_kwh": 3.510081114654895e-12,
-            "grid_import_kwh": 602.5794097049852,
-            "grid_import_storage_adjusted_kwh": 602.5794097049758,
-            "load_served_kwh": 1419.9999999999964,
-            "objective_J": 5861.969773512165,
+            "emissions_kg": 498.40222994538306,
+            "emissions_storage_adjusted_kg": 498.40222994538306,
+            "flex_served_kwh": 120.0,
+            "flex_unserved_kwh": 0.0,
+            "grid_import_kwh": 602.5794097049738,
+            "grid_import_storage_adjusted_kwh": 602.5794097049738,
+            "load_served_kwh": 1420.0,
+            "objective_J": 5861.969773511844,
             "peak_grid_import_kw": 115.0,
             "pv_available_kwh": 916.4051996083215,
-            "pv_curtailed_kwh": 81.53724143532318,
-            "pv_used_kwh": 834.8679581729984
+            "pv_curtailed_kwh": 81.53724143532057,
+            "pv_used_kwh": 834.8679581730009
           },
-          "solve_time_s": 4.94778918800003,
+          "solve_time_s": 5.348641833999864,
           "validation": {
             "all_passed": true,
             "checks": [
@@ -466,11 +466,11 @@
                 "worst_violation": 0.0
               },
               {
-                "detail": "max |residual| 9.51e-12 kW",
+                "detail": "max |residual| 3.55e-15 kW",
                 "kind": "physical",
                 "name": "power_balance",
                 "passed": true,
-                "worst_violation": 9.514167231827741e-12
+                "worst_violation": 3.552713678800501e-15
               },
               {
                 "detail": "max excess 7.11e-15 kW",
@@ -508,11 +508,11 @@
                 "worst_violation": 0.0
               },
               {
-                "detail": "max excess 8.98e-12 kWh",
+                "detail": "max excess 0 kWh",
                 "kind": "physical",
                 "name": "battery_energy_max",
                 "passed": true,
-                "worst_violation": 8.981260180007666e-12
+                "worst_violation": 0.0
               },
               {
                 "detail": "max shortfall 0 kWh",
@@ -563,10 +563,10 @@
       "description": "Critical demand +60 kW 19:00-21:00 (e.g. emergency cooling / pumping).",
       "emissions_decomposition_vs_solar_flex_baseline": {
         "avg_intensity_base": 0.829767711299771,
-        "avg_intensity_new": 0.8271146041803851,
-        "timing_effect_kg": 1.5987077218836445,
-        "total_reduction_kg": 1.5987081725104986,
-        "volume_effect_kg": 4.5062683391536167e-07
+        "avg_intensity_new": 0.827114604180391,
+        "timing_effect_kg": 1.5987077218800936,
+        "total_reduction_kg": 1.598708172508566,
+        "volume_effect_kg": 4.5062843758770306e-07
       },
       "t_disturbance_step": 76
     },
@@ -833,28 +833,28 @@
         "oracle": {
           "metrics": {
             "avg_import_carbon_kg_per_kwh": 0.8072669852857621,
-            "battery_e_final_kwh": 99.99999999999994,
+            "battery_e_final_kwh": 100.0,
             "battery_e_init_kwh": 100.0,
-            "battery_e_min_kwh": 32.10526315789468,
-            "battery_throughput_kwh": 396.31036859301827,
-            "cost": 3138.663075614927,
-            "cost_storage_adjusted": 3138.6630756149275,
+            "battery_e_min_kwh": 32.10526315789471,
+            "battery_throughput_kwh": 396.3103685930016,
+            "cost": 3138.6630756149225,
+            "cost_storage_adjusted": 3138.6630756149225,
             "critical_served_kwh": 1165.0,
-            "critical_unserved_kwh": 14.999999999999986,
-            "emissions_kg": 379.7725350500318,
-            "emissions_storage_adjusted_kg": 379.7725350500319,
-            "flex_served_kwh": 119.99999999999994,
-            "flex_unserved_kwh": 5.684341886080802e-14,
-            "grid_import_kwh": 470.44229724766615,
-            "grid_import_storage_adjusted_kwh": 470.4422972476662,
+            "critical_unserved_kwh": 15.0,
+            "emissions_kg": 379.7725350500312,
+            "emissions_storage_adjusted_kg": 379.7725350500312,
+            "flex_served_kwh": 120.0,
+            "flex_unserved_kwh": 0.0,
+            "grid_import_kwh": 470.44229724766535,
+            "grid_import_storage_adjusted_kwh": 470.44229724766535,
             "load_served_kwh": 1285.0,
-            "objective_J": 19096.363330011493,
+            "objective_J": 19096.363330011485,
             "peak_grid_import_kw": 90.0,
             "pv_available_kwh": 916.4051996083215,
-            "pv_curtailed_kwh": 81.53724143532065,
+            "pv_curtailed_kwh": 81.53724143532057,
             "pv_used_kwh": 834.8679581730009
           },
-          "solve_time_s": 2.044088377999998,
+          "solve_time_s": 1.926810960000239,
           "validation": {
             "all_passed": true,
             "checks": [
@@ -866,11 +866,11 @@
                 "worst_violation": 0.0
               },
               {
-                "detail": "max |residual| 3.55e-14 kW",
+                "detail": "max |residual| 0 kW",
                 "kind": "physical",
                 "name": "power_balance",
                 "passed": true,
-                "worst_violation": 3.552713678800501e-14
+                "worst_violation": 0.0
               },
               {
                 "detail": "max excess 7.11e-15 kW",
@@ -894,11 +894,11 @@
                 "worst_violation": 0.0
               },
               {
-                "detail": "max excess 5.68e-14 kW",
+                "detail": "max excess 0 kW",
                 "kind": "physical",
                 "name": "discharge_power_limit",
                 "passed": true,
-                "worst_violation": 5.684341886080802e-14
+                "worst_violation": 0.0
               },
               {
                 "detail": "min(charge, discharge) at each step",
@@ -926,7 +926,7 @@
                 "kind": "physical",
                 "name": "reserve_respected_when_grid_up",
                 "passed": true,
-                "worst_violation": 2.1316282072803006e-14
+                "worst_violation": 0.0
               },
               {
                 "detail": "max excess 0 kW",
@@ -954,36 +954,36 @@
                 "kind": "target",
                 "name": "terminal_energy",
                 "passed": true,
-                "worst_violation": 5.684341886080802e-14
+                "worst_violation": 0.0
               }
             ]
           }
         },
         "reoptimized": {
           "metrics": {
-            "avg_import_carbon_kg_per_kwh": 0.8072669899320014,
-            "battery_e_final_kwh": 100.00000000000897,
+            "avg_import_carbon_kg_per_kwh": 0.8072669899319996,
+            "battery_e_final_kwh": 100.00000000000001,
             "battery_e_init_kwh": 100.0,
-            "battery_e_min_kwh": 32.10526315790368,
-            "battery_throughput_kwh": 396.3103686050106,
-            "cost": 3138.663171246432,
-            "cost_storage_adjusted": 3138.6631712463613,
+            "battery_e_min_kwh": 32.10526315789471,
+            "battery_throughput_kwh": 396.3103686050042,
+            "cost": 3138.6631712463623,
+            "cost_storage_adjusted": 3138.6631712463623,
             "critical_served_kwh": 1165.0,
             "critical_unserved_kwh": 15.0,
-            "emissions_kg": 379.7725372363203,
-            "emissions_storage_adjusted_kg": 379.7725372363131,
-            "flex_served_kwh": 119.99999999999649,
-            "flex_unserved_kwh": 3.510081114654895e-12,
-            "grid_import_kwh": 470.44229724828676,
-            "grid_import_storage_adjusted_kwh": 470.4422972482773,
-            "load_served_kwh": 1284.9999999999964,
-            "objective_J": 19096.363430021927,
+            "emissions_kg": 379.77253723631446,
+            "emissions_storage_adjusted_kg": 379.77253723631446,
+            "flex_served_kwh": 120.0,
+            "flex_unserved_kwh": 0.0,
+            "grid_import_kwh": 470.4422972482805,
+            "grid_import_storage_adjusted_kwh": 470.4422972482805,
+            "load_served_kwh": 1285.0,
+            "objective_J": 19096.363430021494,
             "peak_grid_import_kw": 90.0,
             "pv_available_kwh": 916.4051996083215,
-            "pv_curtailed_kwh": 81.53724143532318,
-            "pv_used_kwh": 834.8679581729984
+            "pv_curtailed_kwh": 81.53724143532057,
+            "pv_used_kwh": 834.8679581730009
           },
-          "solve_time_s": 5.091997117000005,
+          "solve_time_s": 5.223464384000181,
           "validation": {
             "all_passed": true,
             "checks": [
@@ -995,11 +995,11 @@
                 "worst_violation": 0.0
               },
               {
-                "detail": "max |residual| 9.51e-12 kW",
+                "detail": "max |residual| 0 kW",
                 "kind": "physical",
                 "name": "power_balance",
                 "passed": true,
-                "worst_violation": 9.514167231827741e-12
+                "worst_violation": 0.0
               },
               {
                 "detail": "max excess 7.11e-15 kW",
@@ -1037,11 +1037,11 @@
                 "worst_violation": 0.0
               },
               {
-                "detail": "max excess 8.98e-12 kWh",
+                "detail": "max excess 0 kWh",
                 "kind": "physical",
                 "name": "battery_energy_max",
                 "passed": true,
-                "worst_violation": 8.981260180007666e-12
+                "worst_violation": 0.0
               },
               {
                 "detail": "max shortfall 0 kWh",
@@ -1092,10 +1092,10 @@
       "description": "Unannounced grid outage 18:00-21:00 during the evening peak.",
       "emissions_decomposition_vs_solar_flex_baseline": {
         "avg_intensity_base": 0.802389338716218,
-        "avg_intensity_new": 0.8072669899320022,
-        "timing_effect_kg": -2.2946534431293752,
-        "total_reduction_kg": -17.034638310349635,
-        "volume_effect_kg": -14.73998486722024
+        "avg_intensity_new": 0.8072669899319996,
+        "timing_effect_kg": -2.294653443128189,
+        "total_reduction_kg": -17.034638310351,
+        "volume_effect_kg": -14.739984867222795
       },
       "t_disturbance_step": 72
     },
@@ -1361,29 +1361,29 @@
         },
         "oracle": {
           "metrics": {
-            "avg_import_carbon_kg_per_kwh": 0.8139639135516836,
-            "battery_e_final_kwh": 100.00000000000895,
+            "avg_import_carbon_kg_per_kwh": 0.8139639135516837,
+            "battery_e_final_kwh": 100.00000000000003,
             "battery_e_init_kwh": 100.0,
-            "battery_e_min_kwh": 60.000000000008285,
-            "battery_throughput_kwh": 340.447487718584,
-            "cost": 3374.9414689698315,
-            "cost_storage_adjusted": 3374.941468969761,
+            "battery_e_min_kwh": 60.0,
+            "battery_throughput_kwh": 340.4474877185776,
+            "cost": 3374.9414689697996,
+            "cost_storage_adjusted": 3374.9414689697996,
             "critical_served_kwh": 1180.0,
             "critical_unserved_kwh": 0.0,
-            "emissions_kg": 392.80223034138703,
-            "emissions_storage_adjusted_kg": 392.8022303413798,
-            "flex_served_kwh": 119.99999999999649,
-            "flex_unserved_kwh": 3.510081114654895e-12,
-            "grid_import_kwh": 482.5794163618601,
-            "grid_import_storage_adjusted_kwh": 482.5794163618507,
-            "load_served_kwh": 1299.9999999999964,
-            "objective_J": 4330.769673512248,
+            "emissions_kg": 392.802230341382,
+            "emissions_storage_adjusted_kg": 392.802230341382,
+            "flex_served_kwh": 120.0,
+            "flex_unserved_kwh": 0.0,
+            "grid_import_kwh": 482.5794163618539,
+            "grid_import_storage_adjusted_kwh": 482.5794163618538,
+            "load_served_kwh": 1300.0,
+            "objective_J": 4330.7696735118525,
             "peak_grid_import_kw": 90.0,
             "pv_available_kwh": 916.4051996083215,
-            "pv_curtailed_kwh": 81.53724143532318,
-            "pv_used_kwh": 834.8679581729984
+            "pv_curtailed_kwh": 81.53724143532057,
+            "pv_used_kwh": 834.8679581730009
           },
-          "solve_time_s": 5.527106288999988,
+          "solve_time_s": 4.849698228999841,
           "validation": {
             "all_passed": true,
             "checks": [
@@ -1395,11 +1395,11 @@
                 "worst_violation": 0.0
               },
               {
-                "detail": "max |residual| 9.51e-12 kW",
+                "detail": "max |residual| 3.55e-15 kW",
                 "kind": "physical",
                 "name": "power_balance",
                 "passed": true,
-                "worst_violation": 9.514167231827741e-12
+                "worst_violation": 3.552713678800501e-15
               },
               {
                 "detail": "max excess 7.11e-15 kW",
@@ -1437,11 +1437,11 @@
                 "worst_violation": 0.0
               },
               {
-                "detail": "max excess 8.98e-12 kWh",
+                "detail": "max excess 0 kWh",
                 "kind": "physical",
                 "name": "battery_energy_max",
                 "passed": true,
-                "worst_violation": 8.981260180007666e-12
+                "worst_violation": 0.0
               },
               {
                 "detail": "max shortfall 0 kWh",
@@ -1490,29 +1490,29 @@
         },
         "reoptimized": {
           "metrics": {
-            "avg_import_carbon_kg_per_kwh": 0.8139639135516836,
-            "battery_e_final_kwh": 100.00000000000895,
+            "avg_import_carbon_kg_per_kwh": 0.8139639135516837,
+            "battery_e_final_kwh": 100.00000000000003,
             "battery_e_init_kwh": 100.0,
-            "battery_e_min_kwh": 60.000000000008285,
-            "battery_throughput_kwh": 340.447487718584,
-            "cost": 3374.9414689698315,
-            "cost_storage_adjusted": 3374.941468969761,
+            "battery_e_min_kwh": 60.0,
+            "battery_throughput_kwh": 340.4474877185776,
+            "cost": 3374.9414689697996,
+            "cost_storage_adjusted": 3374.9414689697996,
             "critical_served_kwh": 1180.0,
             "critical_unserved_kwh": 0.0,
-            "emissions_kg": 392.80223034138703,
-            "emissions_storage_adjusted_kg": 392.8022303413798,
-            "flex_served_kwh": 119.99999999999649,
-            "flex_unserved_kwh": 3.510081114654895e-12,
-            "grid_import_kwh": 482.5794163618601,
-            "grid_import_storage_adjusted_kwh": 482.5794163618507,
-            "load_served_kwh": 1299.9999999999964,
-            "objective_J": 4330.769673512248,
+            "emissions_kg": 392.802230341382,
+            "emissions_storage_adjusted_kg": 392.802230341382,
+            "flex_served_kwh": 120.0,
+            "flex_unserved_kwh": 0.0,
+            "grid_import_kwh": 482.5794163618539,
+            "grid_import_storage_adjusted_kwh": 482.5794163618538,
+            "load_served_kwh": 1300.0,
+            "objective_J": 4330.7696735118525,
             "peak_grid_import_kw": 90.0,
             "pv_available_kwh": 916.4051996083215,
-            "pv_curtailed_kwh": 81.53724143532318,
-            "pv_used_kwh": 834.8679581729984
+            "pv_curtailed_kwh": 81.53724143532057,
+            "pv_used_kwh": 834.8679581730009
           },
-          "solve_time_s": 5.527106288999988,
+          "solve_time_s": 4.849698228999841,
           "validation": {
             "all_passed": true,
             "checks": [
@@ -1524,11 +1524,11 @@
                 "worst_violation": 0.0
               },
               {
-                "detail": "max |residual| 9.51e-12 kW",
+                "detail": "max |residual| 3.55e-15 kW",
                 "kind": "physical",
                 "name": "power_balance",
                 "passed": true,
-                "worst_violation": 9.514167231827741e-12
+                "worst_violation": 3.552713678800501e-15
               },
               {
                 "detail": "max excess 7.11e-15 kW",
@@ -1566,11 +1566,11 @@
                 "worst_violation": 0.0
               },
               {
-                "detail": "max excess 8.98e-12 kWh",
+                "detail": "max excess 0 kWh",
                 "kind": "physical",
                 "name": "battery_energy_max",
                 "passed": true,
-                "worst_violation": 8.981260180007666e-12
+                "worst_violation": 0.0
               },
               {
                 "detail": "max shortfall 0 kWh",
@@ -1621,10 +1621,10 @@
       "description": "Normal operation: forecast = actual.",
       "emissions_decomposition_vs_solar_flex_baseline": {
         "avg_intensity_base": 0.8172767626268282,
-        "avg_intensity_new": 0.8139639135516845,
-        "timing_effect_kg": 1.5987127731777586,
-        "total_reduction_kg": 1.598707776511901,
-        "volume_effect_kg": -4.996665833343762e-06
+        "avg_intensity_new": 0.8139639135516838,
+        "timing_effect_kg": 1.5987127731780904,
+        "total_reduction_kg": 1.5987077765096842,
+        "volume_effect_kg": -4.996668388468057e-06
       },
       "t_disturbance_step": null
     },
@@ -1890,29 +1890,29 @@
         },
         "oracle": {
           "metrics": {
-            "avg_import_carbon_kg_per_kwh": 0.7891835059111451,
-            "battery_e_final_kwh": 100.0,
+            "avg_import_carbon_kg_per_kwh": 0.789183505911145,
+            "battery_e_final_kwh": 100.00000000000003,
             "battery_e_init_kwh": 100.0,
-            "battery_e_min_kwh": 60.00000000000001,
-            "battery_throughput_kwh": 355.69413152208796,
-            "cost": 4534.6051027279345,
-            "cost_storage_adjusted": 4534.6051027279345,
+            "battery_e_min_kwh": 60.00000000000002,
+            "battery_throughput_kwh": 355.6941315220854,
+            "cost": 4534.605102727934,
+            "cost_storage_adjusted": 4534.605102727934,
             "critical_served_kwh": 1180.0,
             "critical_unserved_kwh": 0.0,
-            "emissions_kg": 524.441474833359,
-            "emissions_storage_adjusted_kg": 524.441474833359,
-            "flex_served_kwh": 119.99999999999999,
-            "flex_unserved_kwh": 1.4210854715202004e-14,
-            "grid_import_kwh": 664.5367913865225,
-            "grid_import_storage_adjusted_kwh": 664.5367913865225,
+            "emissions_kg": 524.4414748333588,
+            "emissions_storage_adjusted_kg": 524.4414748333588,
+            "flex_served_kwh": 120.0,
+            "flex_unserved_kwh": 0.0,
+            "grid_import_kwh": 664.5367913865223,
+            "grid_import_storage_adjusted_kwh": 664.5367913865223,
             "load_served_kwh": 1300.0,
-            "objective_J": 5761.335118155698,
+            "objective_J": 5761.335118155694,
             "peak_grid_import_kw": 90.0,
             "pv_available_kwh": 653.6919485994978,
             "pv_curtailed_kwh": 0.0,
             "pv_used_kwh": 653.6919485994978
           },
-          "solve_time_s": 0.5003056409999829,
+          "solve_time_s": 0.7570187020000958,
           "validation": {
             "all_passed": true,
             "checks": [
@@ -1966,11 +1966,11 @@
                 "worst_violation": 0.0
               },
               {
-                "detail": "max excess 0 kWh",
+                "detail": "max excess 2.84e-14 kWh",
                 "kind": "physical",
                 "name": "battery_energy_max",
                 "passed": true,
-                "worst_violation": 0.0
+                "worst_violation": 2.842170943040401e-14
               },
               {
                 "detail": "max shortfall 0 kWh",
@@ -2019,29 +2019,29 @@
         },
         "reoptimized": {
           "metrics": {
-            "avg_import_carbon_kg_per_kwh": 0.7711617438387974,
-            "battery_e_final_kwh": 100.000000000009,
+            "avg_import_carbon_kg_per_kwh": 0.7711617438387977,
+            "battery_e_final_kwh": 100.00000000000001,
             "battery_e_init_kwh": 100.0,
-            "battery_e_min_kwh": 60.000000000008285,
-            "battery_throughput_kwh": 340.44735782413284,
-            "cost": 4770.779964238971,
-            "cost_storage_adjusted": 4770.7799642389,
+            "battery_e_min_kwh": 60.0,
+            "battery_throughput_kwh": 340.4473578241174,
+            "cost": 4770.779964238945,
+            "cost_storage_adjusted": 4770.779964238945,
             "critical_served_kwh": 1180.0,
             "critical_unserved_kwh": 0.0,
-            "emissions_kg": 515.6690618377737,
-            "emissions_storage_adjusted_kg": 515.6690618377664,
-            "flex_served_kwh": 119.99999999999999,
-            "flex_unserved_kwh": 1.4210854715202004e-14,
-            "grid_import_kwh": 668.691186975645,
-            "grid_import_storage_adjusted_kwh": 668.6911869756356,
+            "emissions_kg": 515.6690618377681,
+            "emissions_storage_adjusted_kg": 515.6690618377681,
+            "flex_served_kwh": 120.0,
+            "flex_unserved_kwh": 0.0,
+            "grid_import_kwh": 668.6911869756375,
+            "grid_import_storage_adjusted_kwh": 668.6911869756375,
             "load_served_kwh": 1300.0,
-            "objective_J": 5972.3417668265865,
+            "objective_J": 5972.341766826539,
             "peak_grid_import_kw": 90.0,
             "pv_available_kwh": 653.6919485994978,
             "pv_curtailed_kwh": 4.935767697158106,
             "pv_used_kwh": 648.7561809023396
           },
-          "solve_time_s": 5.234170371000005,
+          "solve_time_s": 5.078058478999992,
           "validation": {
             "all_passed": true,
             "checks": [
@@ -2053,11 +2053,11 @@
                 "worst_violation": 0.0
               },
               {
-                "detail": "max |residual| 9.51e-12 kW",
+                "detail": "max |residual| 0 kW",
                 "kind": "physical",
                 "name": "power_balance",
                 "passed": true,
-                "worst_violation": 9.514167231827741e-12
+                "worst_violation": 0.0
               },
               {
                 "detail": "max excess 0 kW",
@@ -2095,11 +2095,11 @@
                 "worst_violation": 0.0
               },
               {
-                "detail": "max excess 8.98e-12 kWh",
+                "detail": "max excess 0 kWh",
                 "kind": "physical",
                 "name": "battery_energy_max",
                 "passed": true,
-                "worst_violation": 8.981260180007666e-12
+                "worst_violation": 0.0
               },
               {
                 "detail": "max shortfall 0 kWh",
@@ -2150,10 +2150,10 @@
       "description": "Solar drops to 20% of forecast 12:00-15:00 (e.g. dust storm / heavy cloud).",
       "emissions_decomposition_vs_solar_flex_baseline": {
         "avg_intensity_base": 0.8098027016960637,
-        "avg_intensity_new": 0.7711617438387974,
-        "timing_effect_kg": 25.838867975450906,
-        "total_reduction_kg": 19.98305214567756,
-        "volume_effect_kg": -5.8558158297733565
+        "avg_intensity_new": 0.7711617438387977,
+        "timing_effect_kg": 25.83886797545083,
+        "total_reduction_kg": 19.983052145675856,
+        "volume_effect_kg": -5.855815829774921
       },
       "t_disturbance_step": 48
     }

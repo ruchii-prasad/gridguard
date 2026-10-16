@@ -1,0 +1,216 @@
+{
+  "environment": {
+    "python": "3.13.16",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.18.44-fc-v139-x86_64-with-glibc2.39"
+  },
+  "scenarios": {
+    "normal": {
+      "baseline": {
+        "physical_checks_passed": "13/13",
+        "worst_physical_violation": 0.0,
+        "terminal_target_met": false,
+        "energy_in_kwh": 1436.842105263158,
+        "energy_out_kwh": 1436.842105263158,
+        "energy_closure_error_kwh": 0.0,
+        "battery_identity_error_kwh": 6.394884621840902e-14,
+        "battery_losses_kwh": 15.34210526315789,
+        "solve_time_s": 0.0,
+        "rerun_max_dispatch_diff_kw": 0.0
+      },
+      "baseline_solar_flex": {
+        "physical_checks_passed": "13/13",
+        "worst_physical_violation": 7.105427357601002e-15,
+        "terminal_target_met": false,
+        "energy_in_kwh": 1436.842105263158,
+        "energy_out_kwh": 1436.842105263158,
+        "energy_closure_error_kwh": 0.0,
+        "battery_identity_error_kwh": 3.552713678800501e-14,
+        "battery_losses_kwh": 15.342105263157888,
+        "solve_time_s": 0.0,
+        "rerun_max_dispatch_diff_kw": 0.0
+      },
+      "reoptimized": {
+        "physical_checks_passed": "13/13",
+        "worst_physical_violation": 7.105427357601002e-15,
+        "terminal_target_met": true,
+        "energy_in_kwh": 1478.9474311267163,
+        "energy_out_kwh": 1478.9474311267163,
+        "energy_closure_error_kwh": 0.0,
+        "battery_identity_error_kwh": 0.0,
+        "battery_losses_kwh": 17.447374534854827,
+        "solve_time_s": 5.103965373999927,
+        "rerun_max_dispatch_diff_kw": 0.0
+      },
+      "oracle": {
+        "physical_checks_passed": "13/13",
+        "worst_physical_violation": 7.105427357601002e-15,
+        "terminal_target_met": true,
+        "energy_in_kwh": 1478.9474311267163,
+        "energy_out_kwh": 1478.9474311267163,
+        "energy_closure_error_kwh": 0.0,
+        "battery_identity_error_kwh": 0.0,
+        "battery_losses_kwh": 17.447374534854827,
+        "solve_time_s": 5.103965373999927,
+        "rerun_max_dispatch_diff_kw": 0.0
+      }
+    },
+    "solar_shock": {
+      "baseline": {
+        "physical_checks_passed": "13/13",
+        "worst_physical_violation": 0.0,
+        "terminal_target_met": false,
+        "energy_in_kwh": 1452.765633012606,
+        "energy_out_kwh": 1452.765633012606,
+        "energy_closure_error_kwh": 0.0,
+        "battery_identity_error_kwh": 0.0,
+        "battery_losses_kwh": 16.89464921872909,
+        "solve_time_s": 0.0,
+        "rerun_max_dispatch_diff_kw": 0.0
+      },
+      "baseline_solar_flex": {
+        "physical_checks_passed": "13/13",
+        "worst_physical_violation": 0.0,
+        "terminal_target_met": false,
+        "energy_in_kwh": 1365.3086693990763,
+        "energy_out_kwh": 1365.3086693990763,
+        "energy_closure_error_kwh": 0.0,
+        "battery_identity_error_kwh": 1.4210854715202004e-14,
+        "battery_losses_kwh": 8.367595266409944,
+        "solve_time_s": 0.0,
+        "rerun_max_dispatch_diff_kw": 0.0
+      },
+      "reoptimized": {
+        "physical_checks_passed": "13/13",
+        "worst_physical_violation": 0.0,
+        "terminal_target_met": true,
+        "energy_in_kwh": 1478.9473628510473,
+        "energy_out_kwh": 1478.9473628510473,
+        "energy_closure_error_kwh": 0.0,
+        "battery_identity_error_kwh": 4.263256414560601e-14,
+        "battery_losses_kwh": 17.447367877977104,
+        "solve_time_s": 6.344979089999924,
+        "rerun_max_dispatch_diff_kw": 0.0
+      },
+      "oracle": {
+        "physical_checks_passed": "13/13",
+        "worst_physical_violation": 2.842170943040401e-14,
+        "terminal_target_met": true,
+        "energy_in_kwh": 1486.9614357540527,
+        "energy_out_kwh": 1486.9614357540527,
+        "energy_closure_error_kwh": 0.0,
+        "battery_identity_error_kwh": 5.684341886080802e-14,
+        "battery_losses_kwh": 18.22873998602014,
+        "solve_time_s": 0.6060397379997084,
+        "rerun_max_dispatch_diff_kw": 0.0
+      }
+    },
+    "grid_outage": {
+      "baseline": {
+        "physical_checks_passed": "13/13",
+        "worst_physical_violation": 0.0,
+        "terminal_target_met": false,
+        "energy_in_kwh": 1312.2296135568408,
+        "energy_out_kwh": 1312.2296135568408,
+        "energy_closure_error_kwh": 0.0,
+        "battery_identity_error_kwh": 2.842170943040401e-14,
+        "battery_losses_kwh": 17.342105263157887,
+        "solve_time_s": 0.0,
+        "rerun_max_dispatch_diff_kw": 0.0
+      },
+      "baseline_solar_flex": {
+        "physical_checks_passed": "13/13",
+        "worst_physical_violation": 7.105427357601002e-15,
+        "terminal_target_met": false,
+        "energy_in_kwh": 1402.2296135568408,
+        "energy_out_kwh": 1402.2296135568408,
+        "energy_closure_error_kwh": 0.0,
+        "battery_identity_error_kwh": 0.0,
+        "battery_losses_kwh": 17.342105263157883,
+        "solve_time_s": 0.0,
+        "rerun_max_dispatch_diff_kw": 0.0
+      },
+      "reoptimized": {
+        "physical_checks_passed": "13/13",
+        "worst_physical_violation": 7.105427357601002e-15,
+        "terminal_target_met": true,
+        "energy_in_kwh": 1493.310312013143,
+        "energy_out_kwh": 1493.310312013143,
+        "energy_closure_error_kwh": 0.0,
+        "battery_identity_error_kwh": 4.263256414560601e-14,
+        "battery_losses_kwh": 20.310255421281422,
+        "solve_time_s": 5.7209313479997945,
+        "rerun_max_dispatch_diff_kw": 0.0
+      },
+      "oracle": {
+        "physical_checks_passed": "13/13",
+        "worst_physical_violation": 7.105427357601002e-15,
+        "terminal_target_met": true,
+        "energy_in_kwh": 1493.310312006834,
+        "energy_out_kwh": 1493.310312006834,
+        "energy_closure_error_kwh": 0.0,
+        "battery_identity_error_kwh": 2.842170943040401e-14,
+        "battery_losses_kwh": 20.31025542066631,
+        "solve_time_s": 2.2824262459998863,
+        "rerun_max_dispatch_diff_kw": 0.0
+      }
+    },
+    "demand_spike": {
+      "baseline": {
+        "physical_checks_passed": "13/13",
+        "worst_physical_violation": 0.0,
+        "terminal_target_met": false,
+        "energy_in_kwh": 1556.842105263158,
+        "energy_out_kwh": 1556.842105263158,
+        "energy_closure_error_kwh": 0.0,
+        "battery_identity_error_kwh": 6.394884621840902e-14,
+        "battery_losses_kwh": 15.34210526315789,
+        "solve_time_s": 0.0,
+        "rerun_max_dispatch_diff_kw": 0.0
+      },
+      "baseline_solar_flex": {
+        "physical_checks_passed": "13/13",
+        "worst_physical_violation": 7.105427357601002e-15,
+        "terminal_target_met": false,
+        "energy_in_kwh": 1556.842105263158,
+        "energy_out_kwh": 1556.842105263158,
+        "energy_closure_error_kwh": 0.0,
+        "battery_identity_error_kwh": 3.552713678800501e-14,
+        "battery_losses_kwh": 15.342105263157888,
+        "solve_time_s": 0.0,
+        "rerun_max_dispatch_diff_kw": 0.0
+      },
+      "reoptimized": {
+        "physical_checks_passed": "13/13",
+        "worst_physical_violation": 7.105427357601002e-15,
+        "terminal_target_met": true,
+        "energy_in_kwh": 1598.947362851024,
+        "energy_out_kwh": 1598.947362851024,
+        "energy_closure_error_kwh": 0.0,
+        "battery_identity_error_kwh": 4.263256414560601e-14,
+        "battery_losses_kwh": 17.44736787797485,
+        "solve_time_s": 5.205459766000331,
+        "rerun_max_dispatch_diff_kw": 0.0
+      },
+      "oracle": {
+        "physical_checks_passed": "13/13",
+        "worst_physical_violation": 7.105427357601002e-15,
+        "terminal_target_met": true,
+        "energy_in_kwh": 1598.9474311268336,
+        "energy_out_kwh": 1598.9474311268336,
+        "energy_closure_error_kwh": 0.0,
+        "battery_identity_error_kwh": 2.842170943040401e-14,
+        "battery_losses_kwh": 17.447374534866263,
+        "solve_time_s": 2.00728249399981,
+        "rerun_max_dispatch_diff_kw": 0.0
+      }
+    }
+  },
+  "summary": {
+    "all_physical_checks_pass": true,
+    "worst_physical_violation": 2.842170943040401e-14,
+    "worst_energy_closure_error_kwh": 6.394884621840902e-14,
+    "worst_rerun_dispatch_diff_kw": 0.0
+  }
+}

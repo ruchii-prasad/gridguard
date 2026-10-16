@@ -16,4 +16,5 @@ echo; echo ">> Scenarios";    .venv/bin/python run_demo.py
 echo; echo ">> Outage sweep"; .venv/bin/python run_outage_sweep.py
 echo; echo ">> Carbon sweep"; .venv/bin/python run_carbon_sweep.py
 echo; echo ">> Tamper demo";  .venv/bin/python run_tamper_demo.py
+echo; echo ">> Validation";   .venv/bin/python run_validation.py
 echo; echo ">> Done. Open the dashboard with:  .venv/bin/streamlit run app.py"
