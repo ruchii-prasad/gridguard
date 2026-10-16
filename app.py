@@ -131,7 +131,7 @@ with tab_overview:
                         name="Critical + nominal flexible", line=dict(color="#eb6834", width=2, dash="dash"))
         shade_disturbance(fig, spec)
         st.markdown("**Inputs: solar and demand (simulated)**")
-        st.plotly_chart(base_layout(fig, "kW"), use_container_width=True)
+        st.plotly_chart(base_layout(fig, "kW"), width="stretch")
     with right:
         fig = go.Figure()
         for c in CONTROLLERS:
@@ -145,7 +145,7 @@ with tab_overview:
         shade_disturbance(fig, spec)
         st.markdown("**Battery state of charge**")
         st.plotly_chart(base_layout(fig, "% of capacity").update_yaxes(range=[0, 100]),
-                        use_container_width=True)
+                        width="stretch")
 
     st.markdown("**All controllers**")
     rows = [("Cost, storage-adjusted (₹)", "cost_storage_adjusted", 0),
@@ -160,7 +160,7 @@ with tab_overview:
     for c in CONTROLLERS:
         r = res.runs[c]
         table[LABEL[c]] = [round(r.solve_time_s if k is None else r.metrics[k], n) for _, k, n in rows]
-    st.dataframe(pd.DataFrame(table, index=[r[0] for r in rows]), use_container_width=True)
+    st.dataframe(pd.DataFrame(table, index=[r[0] for r in rows]), width="stretch")
 
 # ---------------------------------------------------------------- dispatch
 with tab_dispatch:
@@ -178,7 +178,7 @@ with tab_dispatch:
                     line=dict(color="#8a8984", width=2, dash="dot"), mode="lines")
     fig.update_layout(barmode="relative")
     shade_disturbance(fig, spec)
-    st.plotly_chart(base_layout(fig, "kW", 400), use_container_width=True)
+    st.plotly_chart(base_layout(fig, "kW", 400), width="stretch")
     st.caption("Bars above zero supply load; pink bars below zero charge the battery. "
                "In each 15-minute step, supply = load served + charging. Where the purple line sits "
                "below the dotted critical-demand line, critical load is going unserved.")
@@ -189,10 +189,10 @@ with tab_dispatch:
         fig.add_scatter(x=HOURS, y=res.runs[c].dispatch.grid_import, name=LABEL[c],
                         line=dict(color=COLOR[c], width=2, dash=DASH[c], shape="hv"))
     shade_disturbance(fig, spec)
-    st.plotly_chart(base_layout(fig, "kW"), use_container_width=True)
+    st.plotly_chart(base_layout(fig, "kW"), width="stretch")
 
     with st.expander("Dispatch table (15-minute steps)"):
-        st.dataframe(pd.DataFrame({"hour": HOURS, **d.to_dict()}).round(2), use_container_width=True)
+        st.dataframe(pd.DataFrame({"hour": HOURS, **d.to_dict()}).round(2), width="stretch")
 
 # ---------------------------------------------------------------- checks
 with tab_checks:
@@ -214,7 +214,7 @@ with tab_checks:
     st.dataframe(pd.DataFrame([{"check": k.name, "kind": k.kind, "passed": "✅" if k.passed else "❌",
                                 "worst violation": k.worst_violation, "detail": k.detail}
                                for k in res.runs[c].validation.checks]),
-                 use_container_width=True, hide_index=True)
+                 width="stretch", hide_index=True)
 
 # ---------------------------------------------------------------- ledger
 with tab_ledger:
@@ -225,7 +225,7 @@ with tab_ledger:
                 "after writing, not that the inputs were true; detecting a rewritten or truncated chain "
                 "needs the head hash published externally (local file anchor shown here as a stand-in).")
     a, b2, c3 = st.columns(3)
-    if a.button(f"Append this scenario ({len(CONTROLLERS)} records)", use_container_width=True):
+    if a.button(f"Append this scenario ({len(CONTROLLERS)} records)", width="stretch"):
         cfg = config_dict(BAT, GRID, SIM, OPT)
         for ctl, r in res.runs.items():
             ledger.append(dispatch_payload(ctl, spec.actual.to_dict(), cfg, r.dispatch.to_dict(),
@@ -233,7 +233,7 @@ with tab_ledger:
         v = ledger.verify()
         anchor.publish(v.head_hash, v.n_records)
         st.success(f"Appended. Ledger now has {v.n_records} records; head anchored.")
-    if b2.button("Verify full chain", use_container_width=True):
+    if b2.button("Verify full chain", width="stretch"):
         trusted = anchor.latest()
         v = ledger.verify(trusted["head_hash"] if trusted else None)
         if v.ok:
@@ -242,7 +242,7 @@ with tab_ledger:
         else:
             where = f" at record {v.first_bad_index}" if v.first_bad_index is not None else ""
             st.error(f"TAMPER DETECTED{where}: {v.reason}", icon="❌")
-    if c3.button("Tamper test on a copy", use_container_width=True):
+    if c3.button("Tamper test on a copy", width="stretch"):
         recs = ledger.records()
         if not recs:
             st.info("Ledger is empty: append a scenario first.")
@@ -263,7 +263,7 @@ with tab_ledger:
                                     "scenario": r["scenario_id"], "controller": r.get("controller"),
                                     "record hash": r["record_hash"][:16] + "…",
                                     "prev hash": r["prev_hash"][:16] + "…"} for r in recs]),
-                     use_container_width=True, hide_index=True)
+                     width="stretch", hide_index=True)
         i = st.number_input("Inspect record", 0, len(recs) - 1, len(recs) - 1)
         r = recs[int(i)]
         ok = record_hash(r) == r["record_hash"]
@@ -271,7 +271,7 @@ with tab_ledger:
                     f"{'matches ✅' if ok else 'DOES NOT match ❌'}")
         st.json({k: v for k, v in r.items() if k != "dispatch"}, expanded=False)
         with st.expander("Dispatch decisions in this record"):
-            st.dataframe(pd.DataFrame(r["dispatch"]).round(2), use_container_width=True)
+            st.dataframe(pd.DataFrame(r["dispatch"]).round(2), width="stretch")
         st.download_button("Export ledger as JSON",
                            json.dumps({"head_hash": ledger.head_hash(), "records": recs}, indent=2),
                            file_name="gridguard_ledger.json", mime="application/json")
@@ -292,5 +292,5 @@ with tab_sweep:
             fig.add_bar(x=df["Outage start"], y=df[LABEL[c]], name=LABEL[c], marker_color=COLOR[c])
         fig.update_layout(barmode="group", bargap=0.25, bargroupgap=0.08)
         st.plotly_chart(base_layout(fig, "kWh unserved", 380).update_xaxes(range=None, dtick=None,
-                        title="Outage start"), use_container_width=True)
-        st.dataframe(df, use_container_width=True, hide_index=True)
+                        title="Outage start"), width="stretch")
+        st.dataframe(df, width="stretch", hide_index=True)
