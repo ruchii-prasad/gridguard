@@ -4,7 +4,7 @@
 GridGuard
 
 ## Tagline (short description)
-Resilience-first microgrid dispatch optimizer with tamper-evident, blockchain-anchored decisions.
+Smarter microgrids that keep critical power on, verifiably
 
 ## Track
 Renewable Energy & Grid Management
