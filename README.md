@@ -4,6 +4,8 @@
 
 **Live demo:** https://gridguard-microgrid.streamlit.app · **Code:** https://github.com/ruchii-prasad/gridguard
 
+*Free hosting: if the demo says it has gone to sleep, click "Yes, get this app back up!" and allow about a minute.*
+
 > **All inputs are synthetic and all results are simulated estimates.** Nothing in this repository
 > is a measurement of real-world energy, cost or emissions.
 

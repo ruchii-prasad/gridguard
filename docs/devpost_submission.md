@@ -10,7 +10,7 @@ Resilience-first microgrid dispatch optimizer with tamper-evident, blockchain-an
 Renewable Energy & Grid Management
 
 ## Links
-- Live demo: https://gridguard-microgrid.streamlit.app
+- Live demo: https://gridguard-microgrid.streamlit.app (free hosting: if it shows "app has gone to sleep", click "Yes, get this app back up!" and wait ~1 minute)
 - Code: https://github.com/ruchii-prasad/gridguard
 - Video: *(paste your YouTube or Vimeo link)*
 
